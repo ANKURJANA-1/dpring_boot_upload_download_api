@@ -2,6 +2,7 @@ package com.converter.pdf_to_csv.controller
 
 import com.converter.pdf_to_csv.models.UploadFileResponse
 import com.converter.pdf_to_csv.services.DocumentService
+import com.converter.pdf_to_csv.utils.Utils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.io.Resource
 import org.springframework.http.HttpHeaders
@@ -73,6 +74,13 @@ class DocumentController {
         } else {
             return ResponseEntity.notFound().build()
         }
+    }
+
+    @GetMapping("/convert")
+    fun convertPdfToCsv(
+        @RequestParam("fileName") fileName: String
+    ) {
+        Utils.pdfToCsv(fileName)
     }
 
 
